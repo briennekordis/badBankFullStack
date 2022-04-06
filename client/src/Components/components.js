@@ -1,6 +1,5 @@
 import NavBar from "./navbar";
 import Home from "./home";
-import AllData from "./alldata";
 import CreateAccount from "./createaccount";
 import Login from "./login";
 import Deposit from "./deposit"
@@ -10,7 +9,6 @@ import Logout from "./logout";
 export {
     NavBar,
     Home,
-    AllData,
     CreateAccount,
     Login,
     Logout,

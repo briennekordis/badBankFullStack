@@ -24,13 +24,12 @@ class NavBar extends React.Component {
               <ul className="navbar-nav flex-grow-1">
                 <li id="nav3" className="nav-item"><Link className="nav-link" title="Make a deposit into your account." to="/deposit">Deposit</Link></li>
                 <li id="nav4" className="nav-item"><Link className="nav-link" title="Make a withdrawl from your account." to="/withdraw">Withdraw</Link></li>
-                <li id="nav5" className="nav-item"><Link className="nav-link" title="View all of your transactions." to="/alldata">All Data</Link></li>
               </ul>
             </>
           ) : (
             <ul className="navbar-nav">
-              <li id="nav1" className="nav-item"><Link className="nav-link" title="Create an account to use badBank." to="/createAccount">Create Account</Link></li>
-              <li id="nav2" className="nav-item"><Link className="nav-link" title="Login to an account to use badBank." to="/login">Login</Link></li>
+              <li id="nav5" className="nav-item"><Link className="nav-link" title="Create an account to use badBank." to="/createAccount">Create Account</Link></li>
+              <li id="nav6" className="nav-item"><Link className="nav-link" title="Login to an account to use badBank." to="/login">Login</Link></li>
             </ul>
           )}
         </div>

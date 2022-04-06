@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Card } from "react-bootstrap";
-import { UserContext } from "./context";
 
 
 function CreateAccount() {
@@ -9,14 +9,17 @@ function CreateAccount() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const userContext = useContext(UserContext);
-    let nav = document.getElementById("nav1");
-    if (nav !== null) {
-        document.getElementById("nav1").className = "nav-item active";
-        document.getElementById("nav2").className = "nav-item";
-        document.getElementById("nav3").className = "nav-item";
-        document.getElementById("nav4").className = "nav-item";    
-    }
+    const loggedIn = localStorage.getItem('email') != null;
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+        if (loggedIn) 
+          navigate("/");
+        else {
+            document.getElementById("nav5").className = "nav-item active";
+            document.getElementById("nav6").className = "nav-item";
+        }
+      })    
     
     function validate(field, label){
         if (!field) {

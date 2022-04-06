@@ -1,11 +1,10 @@
 import './App.css';
-import { React, useContext, useState } from "react";
+import { React, useState } from "react";
 import { NavBar } from "./components";
 import ContextProvider from './context';
 import { Routes, Route } from 'react-router-dom';
 import {
     Home,
-    AllData,
     CreateAccount,
     Deposit,
     Withdraw,
@@ -33,7 +32,6 @@ function App() {
             <Route path="/login/" element={<Login handleLogin={() => handleLogin()}/>} />
             <Route path="/deposit/" element={<Deposit />} />
             <Route path="/withdraw/" element={<Withdraw />} />
-            <Route path="/alldata/" element={<AllData />} />
             <Route path="/logout/" element={<Logout handleLogout={() => handleLogout()}/>} />
           </Routes>
         </div>

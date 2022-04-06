@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Logout(props) {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     localStorage.clear();
     props.handleLogout();
 

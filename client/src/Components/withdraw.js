@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Card } from "react-bootstrap";
 
 function Withdraw(){
@@ -7,16 +8,18 @@ function Withdraw(){
   const [withdraw, setWithdraw] = useState('');
   const email = localStorage.getItem('email');
   const [account, setAccount] = useState({});
-  let nav = document.getElementById("nav1");
-  if (nav !== null) {
-      document.getElementById("nav1").className = "nav-item";
-      document.getElementById("nav2").className = "nav-item";
-      document.getElementById("nav3").className = "nav-item active";
-      document.getElementById("nav4").className = "nav-item";    
-  }
-
+  const loggedIn = localStorage.getItem('email') != null;
+  const navigate = useNavigate();
+  
   useEffect(() => {
-    getAccount();
+    if (!loggedIn) 
+      navigate("/login");
+    else {
+      document.getElementById("nav2").className = "nav-item";
+      document.getElementById("nav3").className = "nav-item";
+      document.getElementById("nav4").className = "nav-item active";    
+      getAccount();
+    }
   }, []);
 
   function getAccount() {
