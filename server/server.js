@@ -76,7 +76,7 @@ app.get('/account/findOne/:email', function (req, res) {
 
 
 // update - deposit/withdraw amount
-app.get('/account/update/:email/:amount', function (req, res) {
+app.put('/account/update/:email/:amount', function (req, res) {
 
     var amount = Number(req.params.amount);
 

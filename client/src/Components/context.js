@@ -12,9 +12,7 @@ class ContextProvider extends React.Component {
       <UserContext.Provider value={
         {
           state: this.state,
-          setUserInfo: ({value}) => this.setState({
-            value
-          })
+          setUserInfo: ({ value }) => this.setState({ value })
         }}>
         {this.props.children})
       </UserContext.Provider>)
@@ -22,3 +20,4 @@ class ContextProvider extends React.Component {
 }
 
 export default ContextProvider;
+
