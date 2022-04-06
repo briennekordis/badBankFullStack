@@ -1,13 +1,15 @@
-import Deposit from "./deposit";
-import React from "react";
+import { React, useContext, useState } from "react";
 import { Card } from "react-bootstrap";
+import { UserContext } from "./context";
 
 
-function Login(){
-  const [show, setShow] = React.useState(true);
-  const [status, setStatus] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+function Login(props){
+  const [show, setShow] = useState(true);
+  const [status, setStatus] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const userContext = useContext(UserContext);
+  let userInfo = userContext.state;
 
   function validate(field, label){
       if (!field) {
@@ -21,19 +23,18 @@ function Login(){
   function handleLogin(){
     if (!validate(email,    'email'))    return;
     if (!validate(password, 'password')) return;
-    fetch(`/account/login/${email}/${password}`)
-    .then(response => response.text())
-    .then(text => {
-        try {
-            const data = JSON.parse(text);
-            setStatus('');
-            setShow(false);
-        } catch(err) {
-            setStatus(text)
-            // console.log('err:', text);
-        }
-    });
-
+    const url = `/account/login/${email}/${password}`;
+    (async () => {
+      var res  = await fetch(url, {method: 'POST'});
+      var data = await res.json();    
+      userInfo.loggedIn = true;
+      userInfo.userName = data.name;
+      userInfo.email = email;
+      props.handleLoginChange(true);
+      console.log(userInfo);
+    })();
+    setStatus('');
+    setShow(false);
   }    
 
   function clearForm(){

@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Card } from "react-bootstrap";
 import { UserContext } from "./context";
 
 
 function Deposit(){
-    const [show, setShow] = React.useState(true);
-    const [status, setStatus] = React.useState('');
-    const [deposit, setDeposit] = React.useState(0);
+    const [show, setShow] = useState(true);
+    const [status, setStatus] = useState('');
+    const [deposit, setDeposit] = useState(0);
     const userContext = useContext(UserContext);
     let users = userContext.state.users;
     let balance = users[0].balance;

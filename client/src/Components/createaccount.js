@@ -10,7 +10,6 @@ function CreateAccount() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const userContext = useContext(UserContext);
-    let users = userContext.state.users;
     let nav = document.getElementById("nav1");
     if (nav !== null) {
         document.getElementById("nav1").className = "nav-item active";
