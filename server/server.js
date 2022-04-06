@@ -2,10 +2,9 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var dal = require('./dal.js');
-const e = require('express');
 
 // used to serve static files from public directory
-app.use(express.static('public'));
+app.use(express.static('src'));
 app.use(cors());
 
 // create user account
@@ -98,6 +97,6 @@ app.get('/account/all', function (req, res) {
     });
 });
 
-var port = 3000;
+var port = 3001;
 app.listen(port);
 console.log('Running on port: ' + port);

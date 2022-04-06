@@ -1,17 +1,14 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Card } from "react-bootstrap";
 import { UserContext } from "./context";
 
-<style>
-
-</style>
 
 function CreateAccount() {
-    const [show, setShow] = React.useState(true);
-    const [status, setStatus] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const [show, setShow] = useState(true);
+    const [status, setStatus] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const userContext = useContext(UserContext);
     let users = userContext.state.users;
     let nav = document.getElementById("nav1");
@@ -41,12 +38,16 @@ function CreateAccount() {
     }
   
     function handleCreate(){
-        if (!validate(name,     'name'))     return;
-        if (!validate(email,    'email'))    return;
+        if (!validate(name, 'name')) return;
+        if (!validate(email, 'email')) return;
         if (!validatePassword(password, 'password')) return;
-        users.push({name, email, password, balance:0});
-        userContext.setUsers(users);
-        setShow(false);
+        const url = `/account/create/${name}/${email}/${password}`;
+        (async () => {
+            var res  = await fetch(url, {method: 'POST'});
+            var data = await res.json();    
+            console.log(data);        
+        })();
+        setShow(false);    
     }    
   
     function clearForm(){
@@ -73,7 +74,7 @@ function CreateAccount() {
                     </>
                     ):( 
                     <>
-                        <h5>Success</h5>
+                        <h5>Success! Your account has been created.</h5>
                         <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button> 
                     </> 
                     )}

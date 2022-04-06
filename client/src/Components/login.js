@@ -19,11 +19,21 @@ function Login(){
   }
 
   function handleLogin(){
-    console.log(email,password);
     if (!validate(email,    'email'))    return;
     if (!validate(password, 'password')) return;
-    // ctx.users.push({email,password});
-    setShow(false);
+    fetch(`/account/login/${email}/${password}`)
+    .then(response => response.text())
+    .then(text => {
+        try {
+            const data = JSON.parse(text);
+            setStatus('');
+            setShow(false);
+        } catch(err) {
+            setStatus(text)
+            // console.log('err:', text);
+        }
+    });
+
   }    
 
   function clearForm(){

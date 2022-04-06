@@ -2,9 +2,9 @@ import NavBar from "./navbar";
 import Home from "./home";
 import AllData from "./alldata";
 import CreateAccount from "./createaccount";
+import Login from "./login";
 import Deposit from "./deposit"
 import Withdraw from "./withdraw"
-import Login from "./login";
 import Main from "./main";
 
 export {
@@ -12,8 +12,8 @@ export {
     Home,
     AllData,
     CreateAccount,
+    Login,
     Deposit,
     Withdraw,
-    Login,
     Main
 }
