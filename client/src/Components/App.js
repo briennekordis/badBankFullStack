@@ -16,18 +16,20 @@ import {
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); 
-  const handleLoginChange = (loggedIn) => {
+  const [userName, setUserName] = useState('');
+  const handleLoginChange = (loggedIn, userName) => {
     setLoggedIn(loggedIn);
+    setUserName(userName);
   }
   return (
     <div>
       <ContextProvider>
-        <NavBar loggedIn={loggedIn}/>
+        <NavBar loggedIn={loggedIn} userName={userName}/>
         <div className="container" style={{ padding: "20px" }}>
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/createAccount/" element={<CreateAccount />} />
-            <Route path="/login/" element={<Login handleLoginChange={(loggedIn) => handleLoginChange(loggedIn)}/>} />
+            <Route path="/login/" element={<Login handleLoginChange={(loggedIn, userName) => handleLoginChange(loggedIn, userName)}/>} />
             <Route path="/deposit/" element={<Deposit />} />
             <Route path="/withdraw/" element={<Withdraw />} />
             <Route path="/alldata/" element={<AllData />} />

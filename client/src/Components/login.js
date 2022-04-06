@@ -30,8 +30,7 @@ function Login(props){
       userInfo.loggedIn = true;
       userInfo.userName = data.name;
       userInfo.email = email;
-      props.handleLoginChange(true);
-      console.log(userInfo);
+      props.handleLoginChange(true, data.name);
     })();
     setStatus('');
     setShow(false);
@@ -57,7 +56,7 @@ function Login(props){
                 </>
                 ):(
                 <>
-                <h5>Success</h5>
+                <h5>You have successfully been logged in.</h5>
                 <button type="submit" className="btn btn-light" onClick={clearForm}></button>
                 </>
                 )}
