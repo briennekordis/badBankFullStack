@@ -5,6 +5,7 @@ import CreateAccount from "./createaccount";
 import Login from "./login";
 import Deposit from "./deposit"
 import Withdraw from "./withdraw"
+import Logout from "./logout";
 
 export {
     NavBar,
@@ -12,6 +13,7 @@ export {
     AllData,
     CreateAccount,
     Login,
+    Logout,
     Deposit,
     Withdraw
 }

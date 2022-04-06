@@ -1,15 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Card } from "react-bootstrap";
-import { UserContext } from "./context";
-
 
 function Deposit(){
     const [show, setShow] = useState(true);
     const [status, setStatus] = useState('');
     const [deposit, setDeposit] = useState(0);
-    const userContext = useContext(UserContext);
-    let users = userContext.state.users;
-    let balance = users[0].balance;
+    const email = localStorage.getItem('email');
+    console.log(email);
+    // let balance = users[0].balance;
     let nav = document.getElementById("nav1");
     if (nav !== null) {
         document.getElementById("nav1").className = "nav-item";
@@ -40,10 +38,10 @@ function Deposit(){
     console.log(deposit);
     if (!validate(deposit) || (!negValidate(deposit)))   
      return;
-    balance += parseFloat(deposit);
-      users[0].deposits.push(parseFloat(deposit));
-      users[0].balance = balance;
-    alert(`Success! Deposited ${deposit} : New balance ${balance}`);
+    // balance += parseFloat(deposit);
+    //   users[0].deposits.push(parseFloat(deposit));
+    //   users[0].balance = balance;
+    alert(`Success! Deposited ${deposit} : New balance ${0}`);
     setShow(false);
   };
 
@@ -59,7 +57,7 @@ function Deposit(){
         <Card.Body>
             {show ? (  
                 <>
-                Your balance is currently: ${balance}<br/>
+                Your balance is currently: ${0}<br/>
                 <br/>
                 Deposit Amount<br/>
                 <input type="input" className="form-control" id="depositAmount" placeholder="Deposit Amount" value={deposit} onChange={e => setDeposit(e.currentTarget.value)}/><br/>

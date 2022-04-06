@@ -1,15 +1,11 @@
 import { React, useContext, useState } from "react";
 import { Card } from "react-bootstrap";
-import { UserContext } from "./context";
-
 
 function Login(props){
   const [show, setShow] = useState(true);
   const [status, setStatus] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const userContext = useContext(UserContext);
-  let userInfo = userContext.state;
 
   function validate(field, label){
       if (!field) {
@@ -27,10 +23,9 @@ function Login(props){
     (async () => {
       var res  = await fetch(url, {method: 'POST'});
       var data = await res.json();    
-      userInfo.loggedIn = true;
-      userInfo.userName = data.name;
-      userInfo.email = email;
-      props.handleLoginChange(true, data.name);
+      localStorage.setItem('email', email);
+      localStorage.setItem('userName', data.name);
+      props.handleLogin();
     })();
     setStatus('');
     setShow(false);
@@ -56,7 +51,7 @@ function Login(props){
                 </>
                 ):(
                 <>
-                <h5>You have successfully been logged in.</h5>
+                <h5>You have successfully been logged</h5>
                 <button type="submit" className="btn btn-light" onClick={clearForm}></button>
                 </>
                 )}

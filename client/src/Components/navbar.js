@@ -8,17 +8,19 @@ class NavBar extends React.Component {
   }
 
 
-
   render() {
+    const loggedIn = localStorage.getItem('email') != null;
+    const userName = localStorage.getItem('userName');
+
     return (
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <Link to="/" className="navbar-brand">badBank</Link>
         <div className="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarNav">
-          {this.props.loggedIn ? (
+          {loggedIn ? (
             <>
               <ul className="navbar-nav">
-                <li id="nav1" className="nav-item"><span className="nav-link">Welcome, {this.props.userName}!</span></li>
-                <li id="nav2" className="nav-item"><Link className="nav-link" title="Login to an account to use badBank." to="/">Logout</Link></li>
+                <li id="nav1" className="nav-item"><span className="nav-link">Welcome, {userName}!</span></li>
+                <li id="nav2" className="nav-item"><Link className="nav-link" title="Logout" to="/logout">Logout</Link></li>
               </ul>
               <ul className="navbar-nav flex-grow-1">
                 <li id="nav3" className="nav-item"><Link className="nav-link" title="Make a deposit into your account." to="/deposit">Deposit</Link></li>

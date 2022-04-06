@@ -3,36 +3,38 @@ import { React, useContext, useState } from "react";
 import { NavBar } from "./components";
 import ContextProvider from './context';
 import { Routes, Route } from 'react-router-dom';
-import { UserContext } from "./context";
 import {
     Home,
     AllData,
     CreateAccount,
     Deposit,
     Withdraw,
-    Login
+    Login, 
+    Logout
   } from "./components";
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); 
-  const [userName, setUserName] = useState('');
-  const handleLoginChange = (loggedIn, userName) => {
-    setLoggedIn(loggedIn);
-    setUserName(userName);
+  const handleLogin = () => {
+    setLoggedIn(true);
+  }
+  const handleLogout = () => {
+    setLoggedIn(false);
   }
   return (
     <div>
       <ContextProvider>
-        <NavBar loggedIn={loggedIn} userName={userName}/>
+        <NavBar/>
         <div className="container" style={{ padding: "20px" }}>
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/createAccount/" element={<CreateAccount />} />
-            <Route path="/login/" element={<Login handleLoginChange={(loggedIn, userName) => handleLoginChange(loggedIn, userName)}/>} />
+            <Route path="/login/" element={<Login handleLogin={() => handleLogin()}/>} />
             <Route path="/deposit/" element={<Deposit />} />
             <Route path="/withdraw/" element={<Withdraw />} />
             <Route path="/alldata/" element={<AllData />} />
+            <Route path="/logout/" element={<Logout handleLogout={() => handleLogout()}/>} />
           </Routes>
         </div>
       </ContextProvider>
