@@ -7,7 +7,6 @@ class NavBar extends React.Component {
     super(props);
   }
 
-
   render() {
     const loggedIn = localStorage.getItem('email') != null;
     const userName = localStorage.getItem('userName');

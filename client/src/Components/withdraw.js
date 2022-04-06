@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { UserContext } from "./context";
 
 function Withdraw(){
-  const [show, setShow] = React.useState(true);
-  const [status, setStatus] = React.useState('');
-  const [withdraw, setWithdraw] = React.useState(0);
-  const userContext = useContext(UserContext);
-  let users = userContext.state.users;
-  let balance = users[0].balance;
+  const [show, setShow] = useState(true);
+  const [status, setStatus] = useState('');
+  const [withdraw, setWithdraw] = useState('');
+  const email = localStorage.getItem('email');
+  const [account, setAccount] = useState({});
   let nav = document.getElementById("nav1");
   if (nav !== null) {
       document.getElementById("nav1").className = "nav-item";
@@ -17,6 +15,18 @@ function Withdraw(){
       document.getElementById("nav4").className = "nav-item";    
   }
 
+  useEffect(() => {
+    getAccount();
+  }, []);
+
+  function getAccount() {
+    const url = `/account/find/${email}`;
+    (async () => {
+      var res = await fetch(url);
+      var data = await res.json();
+      setAccount(data[0]);
+    })();  
+  }
 
   function validate(num){
     if (isNaN(parseFloat(num))) {
@@ -28,7 +38,7 @@ function Withdraw(){
 }  
 
 function overdraft(num){
-  if (num > balance) {
+  if (num > account.balance) {
     setStatus('Error: You do not have enough funds for this transaction.');
     setTimeout(() => setStatus(''),3000);
     return false;
@@ -37,18 +47,19 @@ function overdraft(num){
 }  
 
 function handleSubmit() {
-  console.log(withdraw);
   if (!validate(withdraw) || (!overdraft(withdraw)))   
    return;
-  balance -= parseFloat(withdraw);
-  users[0].withdrawls.push(parseFloat(withdraw));
-  users[0].balance = balance;
-  alert(`Success! Withdrew ${withdraw} : New balance ${balance}`);
-  setShow(false);
-};
+   const url = `/account/update/${email}/-${withdraw}`;
+   (async () => {
+     var res = await fetch(url, { method: 'PUT' });
+     var data = await res.json();
+   })();
+   getAccount();
+   setShow(false);
+ };
 
   function clearForm(){
-    setWithdraw(0);
+    setWithdraw('');
     setShow(true);
   }
   
@@ -58,7 +69,7 @@ function handleSubmit() {
         <Card.Body>
             {show ? (  
                 <>
-                Your balance is currently: ${balance}<br/>
+                Your balance is currently: ${account.balance}<br/>
                 <br/>
                 Withdrawl Amount<br/>
                 <input type="input" className="form-control" id="withdrawlAmount" placeholder="Withdrawl Amount" value={withdraw} onChange={e => setWithdraw(e.currentTarget.value)}/><br/>
@@ -68,6 +79,8 @@ function handleSubmit() {
                 ):(
                 <>
                 <h5>Transaction Successful</h5>
+                <h6>Withdrew ${withdraw}</h6>
+                <h6>New balance: ${account.balance}</h6>
                 <button type="submit" className="btn btn-light" onClick={clearForm}>Make Another Withdrawl</button>
                 </>
                 )}
