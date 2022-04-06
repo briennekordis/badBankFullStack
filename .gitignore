@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # user added files
-client/node_modules
-server/node_modules
+client/node_modules/*
+server/node_modules/*
