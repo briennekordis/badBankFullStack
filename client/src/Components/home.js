@@ -2,13 +2,19 @@ import React from 'react';
 import { Card } from "react-bootstrap";
 import banklogo from "../images/bank.png";
 
-let nav = document.getElementById("nav1");
-if (nav !== null) {
+if (document.getElementById("nav-section1") !== null) {
     document.getElementById("nav1").className = "nav-item";
     document.getElementById("nav2").className = "nav-item";
-    document.getElementById("nav3").className = "nav-item";
-    document.getElementById("nav4").className = "nav-item";    
 }
+if (document.getElementById("nav-section2") !== null) {
+    document.getElementById("nav3").className = "nav-item";
+    document.getElementById("nav4").className = "nav-item";
+}
+if (document.getElementById("nav-section3") !== null) {
+    document.getElementById("nav5").className = "nav-item";
+    document.getElementById("nav6").className = "nav-item";
+}
+
 
 function Home() {
         return (

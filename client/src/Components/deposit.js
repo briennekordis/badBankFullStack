@@ -16,6 +16,7 @@ function Deposit() {
     if (!loggedIn) 
       navigate("/login");
     else {
+      document.getElementById("nav1").className = "nav-item";
       document.getElementById("nav2").className = "nav-item";
       document.getElementById("nav3").className = "nav-item active";
       document.getElementById("nav4").className = "nav-item";
