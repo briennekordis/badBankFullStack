@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Card } from "react-bootstrap";
 
 
@@ -46,10 +46,14 @@ function CreateAccount() {
         const url = `/account/create/${name}/${email}/${password}`;
         (async () => {
             var res  = await fetch(url, {method: 'POST'});
-            var data = await res.json();    
-            console.log(data);        
+            if (res.status === 200) {
+                var data = await res.json();    
+                console.log(data);        
+                setShow(false);       
+            } else {
+                alert('User already exsists.')
+            }
         })();
-        setShow(false);    
     }    
   
     function clearForm(){
@@ -77,7 +81,7 @@ function CreateAccount() {
                     ):( 
                     <>
                         <h5>Success! Your account has been created.</h5>
-                        <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button> 
+                        <h6>Click <Link to="/login">here</Link> to login.</h6>
                     </> 
                     )}
             </Card.Body>

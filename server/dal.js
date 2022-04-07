@@ -1,5 +1,6 @@
+const env = require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
+const url = process.env.MONGODB_CONNECTION_STRING;
 let db = null;
  
 // connect to mongo

@@ -16,14 +16,12 @@ app.post('/account/create/:name/:email/:password', function (req, res) {
 
             // if user exists, return error message
             if(users.length > 0){
-                console.log('User already exists');
-                res.send('User already exists');    
+                res.status(401).send('User already exists');    
             }
             else{
                 // else create user
                 dal.create(req.params.name,req.params.email,req.params.password).
                     then((user) => {
-                        console.log(user);
                         res.send(user);            
                     });            
             }
@@ -44,11 +42,11 @@ app.post('/account/login/:email/:password', function (req, res) {
                     res.send(user[0]);
                 }
                 else{
-                    res.send('Login failed: wrong password');
+                    res.status(401).send('Invalid credentials');
                 }
             }
             else{
-                res.send('Login failed: user not found');
+                res.status(401).send('Invalid credentials');
             }
     });
     
@@ -97,6 +95,6 @@ app.get('/account/all', function (req, res) {
     });
 });
 
-var port = 3001;
-app.listen(port);
-console.log('Running on port: ' + port);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT);
+console.log('Running on port: ' + PORT);

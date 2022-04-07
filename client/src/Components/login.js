@@ -35,13 +35,17 @@ function Login(props) {
     const url = `/account/login/${email}/${password}`;
     (async () => {
       var res = await fetch(url, { method: 'POST' });
-      var data = await res.json();
-      localStorage.setItem('email', email);
-      localStorage.setItem('userName', data.name);
-      props.handleLogin();
+      if (res.status === 200) {
+        var data = await res.json();
+        localStorage.setItem('email', email);
+        localStorage.setItem('userName', data.name);
+        props.handleLogin();  
+        setStatus('');
+        setShow(false);    
+      } else {
+          alert('Invalid login');
+      }
     })();
-    setStatus('');
-    setShow(false);
   }
 
   function clearForm() {
