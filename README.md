@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+## Project Name
+badBank Full-Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Description & General Info]()
+- [Languages & Technologies]()
+- [Features]()
+- [Suggestions for Improvements]()
 
-## Available Scripts
+## Description & General Info
+This is a capstone project for the MITxPro Full-Stack Web Development Women's Cohort program that focused on using the MERN stack. This full-stack version of the application is an expansion and improvement upon the badBank project that was an earlier assignment during the program.
 
-In the project directory, you can run:
+## Languages & Technologies
+- MongoDB / MongoDB Atlas
+- Express
+- Node.js
+- React
+- Bootstrap
+- Heroku (for hosting the server-side files)
+- Netlify (for hosting the client-side files)
 
-### `npm start`
+## Features
+You can watch a brief overview of the application'ss archetiture and key features on [YouTube](https://www.youtube.com/watch?v=gm5MOgWMLCk). 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This application mimics an online bank, and though it has user authntication, its lack of security doesn't make it a very good one. That being siad, a user is able to create an account, login, and make transactions that are stored in database (specifically, a Cluster via MongoDB Atlas). The application features a dynamic navigation bar that displays different options based on if a user is logged in or not. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![create account](https://user-images.githubusercontent.com/87245718/162588426-030bc42d-b6d6-4eb3-8039-12a4367aa9c6.png) ![logged in](https://user-images.githubusercontent.com/87245718/162588434-6df1de22-f3e1-4e7d-a736-391da1d706a8.png)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Suggestions for Improvements
+Some additional features for this application could include a user profile page that allows user's to update their name, email, or password with the help of PUT or PATCH requests to the database. Additionally, if redoing this application, I would opt for using a SQL database verses NoSQL, as the more structuered data system would be more conducive to a banking application. 
